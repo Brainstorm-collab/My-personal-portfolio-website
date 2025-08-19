@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter, CheckCircle } from 'lucide-react';
+import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter, CheckCircle, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    user_name: '',
+    user_email: '',
+    user_message: ''
   });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,14 +37,33 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      // EmailJS configuration with actual credentials
+      const result = await emailjs.sendForm(
+        'service_v3lr8zc', // Your EmailJS service ID
+        'template_rxdgjnu', // Your EmailJS template ID
+        formRef.current!,
+        'JLKf7gGhHu_uStKDu' // Your EmailJS public key
+      );
+
+      if (result.status === 200) {
+        setShowSuccess(true);
+        setFormData({ user_name: '', user_email: '', user_message: '' });
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setError('Failed to send message. Please try again or contact me directly via email.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -123,7 +146,7 @@ const Contact = () => {
 
               <div className="bg-theme-tertiary dark:bg-dark-700 rounded-2xl p-4 sm:p-6 lg:p-8 border border-theme hover:border-theme-hover transition-all duration-300">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-theme-primary mb-3 sm:mb-4 lg:mb-6">Send a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-6">
+                <form onSubmit={handleSubmit} ref={formRef} className="space-y-3 sm:space-y-4 lg:space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-theme-secondary mb-2">
                       Your Name
@@ -131,8 +154,8 @@ const Contact = () => {
                     <input
                       type="text"
                       id="name"
-                      name="name"
-                      value={formData.name}
+                      name="user_name"
+                      value={formData.user_name}
                       onChange={handleInputChange}
                       required
                       className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-theme-primary dark:bg-dark-600 border border-theme rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-accent-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base text-theme-primary placeholder-gray-400 dark:placeholder-gray-500 touch-manipulation"
@@ -147,8 +170,8 @@ const Contact = () => {
                     <input
                       type="email"
                       id="email"
-                      name="email"
-                      value={formData.email}
+                      name="user_email"
+                      value={formData.user_email}
                       onChange={handleInputChange}
                       required
                       className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-theme-primary dark:bg-dark-600 border border-theme rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-accent-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base text-theme-primary placeholder-gray-400 dark:placeholder-gray-500 touch-manipulation"
@@ -162,8 +185,8 @@ const Contact = () => {
                     </label>
                     <textarea
                       id="message"
-                      name="message"
-                      value={formData.message}
+                      name="user_message"
+                      value={formData.user_message}
                       onChange={handleInputChange}
                       required
                       rows={4}
@@ -177,10 +200,20 @@ const Contact = () => {
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all shadow-lg hover:shadow-glow-purple text-sm sm:text-base touch-manipulation"
+                    disabled={isSubmitting}
                   >
-                    <Send size={16} className="sm:w-5 sm:h-5" />
-                    Send Message
+                    {isSubmitting ? (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                      <>
+                        <Send size={16} className="sm:w-5 sm:h-5" />
+                        Send Message
+                      </>
+                    )}
                   </motion.button>
+                  {error && (
+                    <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+                  )}
                 </form>
               </div>
             </motion.div>
