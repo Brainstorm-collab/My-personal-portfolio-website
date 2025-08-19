@@ -45,7 +45,7 @@ const Projects = () => {
         "File Storage",
       ],
       github: "https://github.com/Brainstorm-collab/CareerFlow",
-      demo: "#",
+      demo: "https://careerflowjb.vercel.app/",
     },
     {
       title: "FoodieHub",
@@ -61,7 +61,7 @@ const Projects = () => {
         "Vite",
       ],
       github: "https://github.com/Brainstorm-collab/FoodieHub.git",
-      demo: "https://foodie-8evm45rcs-eesaans-projects.vercel.app/",
+      demo: "https://foodie-hub-lilac.vercel.app/",
     },
     {
       title: "Weather App",
@@ -77,7 +77,7 @@ const Projects = () => {
         "Responsive Design",
       ],
       github: "https://github.com/Brainstorm-collab/weather-app",
-      demo: "#",
+      demo: "https://weather-app-three-blue-95.vercel.app/",
     },
     {
       title: "Snake Game",
@@ -92,7 +92,7 @@ const Projects = () => {
         "Event Handling",
       ],
       github: "https://github.com/Brainstorm-collab/PythonSnakeGameProject.git",
-      demo: "#",
+      demo: "https://snake-game-eesaan.vercel.app/",
     },
     {
       title: "2048 React Game",
@@ -213,16 +213,8 @@ const Projects = () => {
                       className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all duration-300 font-medium text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-glow-purple touch-manipulation"
                     >
                       <ExternalLink size={14} className="sm:w-4 sm:h-4" />
-                      {project.demo === "#" ? (
-                        <span className="hidden sm:inline">Demo</span>
-                      ) : (
-                        <span className="hidden sm:inline">Live Demo</span>
-                      )}
-                      {project.demo === "#" ? (
-                        <span className="sm:hidden">Demo</span>
-                      ) : (
-                        <span className="sm:hidden">Live</span>
-                      )}
+                      <span className="hidden sm:inline">Live Demo</span>
+                      <span className="sm:hidden">Live</span>
                     </motion.a>
                   </div>
                 </div>
@@ -234,7 +226,9 @@ const Projects = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#"
+              href="https://github.com/Brainstorm-collab"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white rounded-full font-semibold hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all duration-300 shadow-lg hover:shadow-glow-purple text-sm sm:text-base"
             >
               <Github size={18} className="sm:w-5 sm:h-5" />

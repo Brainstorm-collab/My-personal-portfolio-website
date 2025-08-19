@@ -153,7 +153,7 @@ const Navigation = () => {
                   document.body.classList.remove('mobile-nav-open');
                 }
               }}
-              className={`p-2.5 rounded-md transition-colors touch-manipulation ${
+              className={`p-2.5 rounded-md transition-all duration-200 touch-manipulation ${
                 scrolled ? 'text-theme-primary' : 'text-white'
               }`}
               aria-label="Toggle mobile menu"
@@ -171,26 +171,27 @@ const Navigation = () => {
           opacity: isOpen ? 1 : 0,
           height: isOpen ? 'auto' : 0,
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ 
+          duration: 0.3, 
+          ease: "easeInOut"
+        }}
         className="md:hidden bg-white/95 dark:bg-dark-800/95 backdrop-blur-md border-t border-theme shadow-lg overflow-hidden"
       >
         <div className="px-4 pt-4 pb-6 space-y-2">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
-              <motion.button
+              <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors touch-manipulation ${
+                className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 touch-manipulation ${
                   isActive
                     ? 'text-blue-600 dark:text-accent-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50'
                     : 'text-theme-primary hover:text-blue-600 dark:hover:text-accent-400 hover:bg-gray-50 dark:hover:bg-dark-700 border border-transparent hover:border-gray-200 dark:hover:border-dark-600'
                 }`}
               >
                 {item.name}
-              </motion.button>
+              </button>
             );
           })}
         </div>

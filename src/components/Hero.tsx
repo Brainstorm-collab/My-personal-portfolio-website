@@ -96,7 +96,7 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center min-h-screen py-8 sm:py-12 lg:py-20"
+          className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center min-h-screen py-8 sm:py-12 lg:py-20 pb-16 sm:pb-20 lg:pb-24"
         >
           {/* Left Column - Text Content */}
           <div className="text-white space-y-4 sm:space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1">
@@ -269,7 +269,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-2 sm:bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 dark:text-gray-300/60"
+        className="absolute bottom-1 xs:bottom-2 sm:bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 dark:text-gray-300/60 z-10 pointer-events-none"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
