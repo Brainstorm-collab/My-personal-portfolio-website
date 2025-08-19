@@ -61,7 +61,7 @@ const Projects = () => {
         "Vite",
       ],
       github: "https://github.com/Brainstorm-collab/FoodieHub.git",
-      demo: "#",
+      demo: "https://foodie-8evm45rcs-eesaans-projects.vercel.app/",
     },
     {
       title: "Weather App",
@@ -108,7 +108,7 @@ const Projects = () => {
         "Responsive Design",
       ],
       github: "https://github.com/Brainstorm-collab/2048-react-game",
-      demo: "#",
+      demo: "https://2048-react-game-three.vercel.app/",
     },
   ];
 
@@ -213,8 +213,16 @@ const Projects = () => {
                       className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all duration-300 font-medium text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-glow-purple touch-manipulation"
                     >
                       <ExternalLink size={14} className="sm:w-4 sm:h-4" />
-                      <span className="hidden sm:inline">Demo</span>
-                      <span className="sm:hidden">Live</span>
+                      {project.demo === "#" ? (
+                        <span className="hidden sm:inline">Demo</span>
+                      ) : (
+                        <span className="hidden sm:inline">Live Demo</span>
+                      )}
+                      {project.demo === "#" ? (
+                        <span className="sm:hidden">Demo</span>
+                      ) : (
+                        <span className="sm:hidden">Live</span>
+                      )}
                     </motion.a>
                   </div>
                 </div>
