@@ -143,11 +143,11 @@ const Hero = () => {
                   boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 rounded-full font-semibold text-white shadow-lg hover:shadow-glow transition-all duration-300 text-sm sm:text-base touch-manipulation"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 rounded-full font-semibold text-white shadow-lg hover:shadow-glow transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[44px]"
               >
                 <Download size={16} className="sm:w-5 sm:h-5" />
                 <span className="hidden sm:inline">View Resume</span>
-                <span className="sm:hidden">View Resume</span>
+                <span className="sm:hidden">Resume</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
@@ -163,7 +163,7 @@ const Hero = () => {
                   backgroundColor: "rgba(255, 255, 255, 0.1)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-2 sm:gap-3 border-2 border-white/30 hover:border-white/50 dark:border-gray-400/30 dark:hover:border-gray-300/50 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 rounded-full font-semibold text-white backdrop-blur-sm transition-all duration-300 text-sm sm:text-base hover:bg-white/5 dark:hover:bg-gray-800/20 touch-manipulation"
+                className="inline-flex items-center justify-center gap-2 sm:gap-3 border-2 border-white/30 hover:border-white/50 dark:border-gray-400/30 dark:hover:border-gray-300/50 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 rounded-full font-semibold text-white backdrop-blur-sm transition-all duration-300 text-sm sm:text-base hover:bg-white/5 dark:hover:bg-gray-800/20 touch-manipulation min-h-[44px]"
               >
                 <MessageCircle size={16} className="sm:w-5 sm:h-5" />
                 <span className="hidden sm:inline">Let's Connect</span>
@@ -212,7 +212,7 @@ const Hero = () => {
               />
               
               {/* Profile Image Container */}
-              <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+              <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-accent-500 dark:to-secondary-600 rounded-full blur-2xl opacity-30 animate-pulse" />
                 <div className="relative w-full h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 dark:from-accent-400 dark:via-secondary-500 dark:to-pink-500 rounded-full p-1 shadow-2xl">
                   <div className="w-full h-full bg-gray-800 dark:bg-dark-800 rounded-full flex items-center justify-center overflow-hidden">

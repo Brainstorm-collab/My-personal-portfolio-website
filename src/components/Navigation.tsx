@@ -26,11 +26,25 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Cleanup body scroll lock when component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('mobile-nav-open');
+    };
+  }, []);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Close mobile menu first
       setIsOpen(false);
+      // Remove body scroll lock
+      document.body.classList.remove('mobile-nav-open');
+      
+      // Small delay to ensure menu is closed before scrolling
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   };
 
@@ -130,7 +144,15 @@ const Navigation = () => {
             </motion.button>
             
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                setIsOpen(!isOpen);
+                // Toggle body scroll lock
+                if (!isOpen) {
+                  document.body.classList.add('mobile-nav-open');
+                } else {
+                  document.body.classList.remove('mobile-nav-open');
+                }
+              }}
               className={`p-2.5 rounded-md transition-colors touch-manipulation ${
                 scrolled ? 'text-theme-primary' : 'text-white'
               }`}
@@ -149,15 +171,18 @@ const Navigation = () => {
           opacity: isOpen ? 1 : 0,
           height: isOpen ? 'auto' : 0,
         }}
-        className="md:hidden bg-white/95 dark:bg-dark-800/95 backdrop-blur-md border-t border-theme shadow-lg"
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="md:hidden bg-white/95 dark:bg-dark-800/95 backdrop-blur-md border-t border-theme shadow-lg overflow-hidden"
       >
         <div className="px-4 pt-4 pb-6 space-y-2">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
-              <button
+              <motion.button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors touch-manipulation ${
                   isActive
                     ? 'text-blue-600 dark:text-accent-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50'
@@ -165,7 +190,7 @@ const Navigation = () => {
                 }`}
               >
                 {item.name}
-              </button>
+              </motion.button>
             );
           })}
         </div>

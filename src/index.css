@@ -219,11 +219,29 @@
 @media (max-width: 768px) {
   .mobile-nav-open {
     overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
   
   .mobile-nav-open body {
     position: fixed;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Better mobile touch targets */
+@media (max-width: 640px) {
+  .touch-manipulation {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve button spacing on very small screens */
+  .flex-col.gap-3 > * + * {
+    margin-top: 0.75rem;
   }
 }
 
