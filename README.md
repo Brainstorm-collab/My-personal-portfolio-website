@@ -1,15 +1,19 @@
 # Eesaan G - Personal Portfolio Website
 
-A modern, responsive, and animated personal portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion.
+![Portfolio Preview](public/imgs/portfolio.png)
+
+A modern, responsive, and animated personal portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion. Features a beautiful dark theme with smooth animations and professional design.
 
 ## 🚀 Features
 
 - **Modern Design**: Clean, professional design with beautiful gradients and animations
+- **Dark Theme**: Elegant dark theme with purple accents and grid patterns
 - **Fully Responsive**: Optimized for mobile, tablet, and desktop devices
 - **Smooth Animations**: Powered by Framer Motion for engaging user experience
 - **Performance Optimized**: Fast loading times and smooth interactions
 - **SEO Friendly**: Proper meta tags and semantic HTML structure
 - **Modular Architecture**: Clean, maintainable component structure
+- **Theme Toggle**: Built-in theme switching capability
 
 ## 🛠️ Tech Stack
 
@@ -19,6 +23,7 @@ A modern, responsive, and animated personal portfolio website built with React, 
 - **Icons**: Lucide React for consistent iconography
 - **Font**: Poppins from Google Fonts
 - **Build Tool**: Vite for fast development and building
+- **State Management**: React Context for theme management
 - **Deployment**: Ready for Vercel, Netlify, or any static hosting
 
 ## 📁 Project Structure
@@ -32,7 +37,12 @@ src/
 │   ├── Projects.tsx     # Projects showcase with hover effects
 │   ├── Skills.tsx       # Skills grid with progress bars
 │   ├── Contact.tsx      # Contact form with success animation
-│   └── Footer.tsx       # Footer with social links
+│   ├── Footer.tsx       # Footer with social links
+│   └── ThemeToggle.tsx  # Theme switching component
+├── contexts/            # React contexts
+│   └── ThemeContext.tsx # Theme state management
+├── hooks/               # Custom React hooks
+│   └── useActiveSection.ts # Active section tracking
 ├── App.tsx              # Main app component
 ├── main.tsx            # React app entry point
 ├── index.css           # Global styles and Tailwind imports
@@ -50,8 +60,8 @@ src/
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd portfolio-website
+git clone https://github.com/Brainstorm-collab/portfolio.git
+cd portfolio
 ```
 
 2. Install dependencies:
@@ -161,9 +171,9 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 ## 📞 Contact
 
 **Eesaan G**
-- Email: eesaan.g@example.com
-- LinkedIn: [Your LinkedIn Profile]
-- GitHub: [Your GitHub Profile]
+- Email: galieesaan@gmail.com
+- LinkedIn: [Eesaan G - LinkedIn](https://www.linkedin.com/in/eesaan-gali-11o42k5)
+- GitHub: [Brainstorm-collab](https://github.com/Brainstorm-collab)
 
 ---
 
