@@ -1,4 +1,4 @@
-# Eesaan G - Personal Portfolio Website
+# Eesaan G - Personal Portfolio Website (https://portfolio-black-ten-vxqupdoloq.vercel.app/)
 
 ![Portfolio Preview](public/imgs/portfolio.png)
 
@@ -85,6 +85,7 @@ npm run build
 The build files will be generated in the `dist` directory.
 
 ## 🌐 Deployment
+https://portfolio-black-ten-vxqupdoloq.vercel.app/
 
 ### Vercel
 
@@ -160,9 +161,6 @@ The website is fully responsive with breakpoints:
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
