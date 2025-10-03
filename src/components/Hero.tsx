@@ -135,7 +135,7 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-3 sm:pt-4 justify-center lg:justify-start"
             >
               <motion.a
-                href="/Eesaan_Resume.pdf"
+                href="/imgs/Eesaan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ 

@@ -272,7 +272,7 @@ const Contact = () => {
               <div className="pt-4 sm:pt-6 lg:pt-8 border-t border-theme">
                 <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-theme-primary mb-3 sm:mb-4">Download Resume</h4>
                 <motion.a
-                  href="/Eesaan_Resume.pdf"
+                  href="/imgs/Eesaan_Resume.pdf"
                   download="Eesaan_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
