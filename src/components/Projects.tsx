@@ -1,9 +1,102 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, X, Calendar, Users, Code, Zap } from "lucide-react";
+import TechStackList from "./TechStackList";
+import { useScrollPerformance } from "../hooks/useScrollPerformance";
+
+// Lazy Image Component for better performance
+const LazyImage = React.memo(({ src, alt, className, style, onError, onLoad }: {
+  src: string;
+  alt: string;
+  className?: string;
+  style?: React.CSSProperties;
+  onError?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void;
+  onLoad?: () => void;
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleLoad = useCallback(() => {
+    setIsLoaded(true);
+    onLoad?.();
+  }, [onLoad]);
+
+  const handleError = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    onError?.(e);
+  }, [onError]);
+
+  return (
+    <div ref={imgRef} className="relative">
+      {!isLoaded && (
+        <div 
+          className={`${className} bg-gray-200 dark:bg-gray-700 animate-pulse`}
+          style={style}
+        />
+      )}
+      {isInView && (
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          style={style}
+          onLoad={handleLoad}
+          onError={handleError}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </div>
+  );
+});
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+
+  // Optimized scroll performance
+  useScrollPerformance({
+    throttleMs: 16, // 60fps
+    onScroll: () => {
+      // Optional: Add scroll-based animations or effects
+    },
+    onScrollEnd: () => {
+      // Optional: Trigger actions when scrolling stops
+    },
+  });
+
+  // Memoized event handlers for better performance
+  const handleProjectClick = useCallback((index: number) => {
+    setSelectedProject(index);
+  }, []);
+
+  const handleModalClose = useCallback(() => {
+    setSelectedProject(null);
+  }, []);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setSelectedProject(index);
+    }
+  }, []);
 
   // Handle escape key to close modal and focus management
   useEffect(() => {
@@ -35,30 +128,33 @@ const Projects = () => {
     };
   }, [selectedProject]);
 
-  const containerVariants = {
+  // Optimized animation variants for better performance
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.1,
-        staggerChildren: 0.1,
+        delayChildren: 0.05, // Reduced delay
+        staggerChildren: 0.05, // Reduced stagger
+        duration: 0.3, // Faster animation
       },
     },
-  };
+  }), []);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+  const itemVariants = useMemo(() => ({
+    hidden: { y: 10, opacity: 0 }, // Reduced movement
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.4,
+        duration: 0.3, // Faster animation
         ease: "easeOut" as const
       }
     },
-  };
+  }), []);
 
-  const projects = [
+  // Memoize projects data to prevent unnecessary re-renders
+  const projects = useMemo(() => [
     {
       title: "CREATR",
       description:
@@ -150,64 +246,74 @@ const Projects = () => {
     {
       title: "CAREERFLOW",
       description:
-        "A modern, full-stack job portal platform that connects talented professionals with innovative companies worldwide. Built with cutting-edge technologies and enterprise-grade architecture, featuring advanced job search with multi-criteria filtering, real-time application tracking, role-based access control, and comprehensive company management system.",
-      detailedDescription: "CareerFlow revolutionizes the job market by providing a seamless platform that efficiently connects job seekers with employers. The platform addresses the challenges of traditional job boards by offering smart job search with advanced filtering algorithms, real-time application tracking with optimistic updates, and enterprise-grade security with JWT authentication. Built with React 18, Vite, and Supabase, it demonstrates advanced full-stack development skills with a focus on user experience, performance, and scalability. The application features role-based access control for different user types, responsive design that works across all devices, and comprehensive data management with real-time synchronization.",
+        "CareerFlow is a serverless ATS-lite platform that connects job seekers and employers with a smooth, high-performance experience. It includes Google/Facebook OAuth and email/password authentication, role-based access (candidate vs recruiter), real-time data via Convex, and a responsive React (Vite + Tailwind) UI. Users can post jobs, apply, save jobs, manage candidates, receive notifications, and handle resumes, with lazy/deferred routing, virtualized lists, request caching/deduplication, and a production-only service worker for fast, reliable UX.",
+      detailedDescription: "CareerFlow is a comprehensive serverless ATS-lite platform that revolutionizes the job market by providing a seamless, high-performance experience for both job seekers and employers. Built with modern technologies including React 18, Vite, and Convex, it features Google/Facebook OAuth and email/password authentication with role-based access control. The platform offers advanced job search with multi-criteria filtering, real-time application tracking and notifications, secure resume upload and handling via Convex storage, and comprehensive candidate management. With lazy/deferred routing, virtualized lists, request caching/deduplication, and a production-only service worker, CareerFlow delivers fast, reliable UX with optimistic UI updates and protected routes. The application demonstrates enterprise-grade architecture with real-time data synchronization, local storage session handling, and comprehensive authentication guards.",
       image: "/imgs/CareerFlow.png",
       techStack: [
         "React 18",
-        "TypeScript",
+        "Vite 5",
         "Tailwind CSS",
-        "Supabase",
-        "PostgreSQL",
-        "Clerk Auth",
-        "Shadcn UI",
+        "Convex",
+        "React Router v6",
+        "Google OAuth",
+        "Facebook SDK",
+        "Radix UI",
         "React Hook Form",
         "Zod Validation",
-        "Row Level Security",
-        "Real-time Subscriptions",
-        "File Upload System",
+        "Service Worker",
+        "Embla Carousel",
       ],
       detailedTechStack: [
-        "React 18.3.1",
-        "Vite 5.3.4",
-        "TypeScript",
-        "Tailwind CSS 3.4.7",
-        "Supabase 2.45.0",
-        "PostgreSQL",
-        "Clerk 5.3.1",
-        "Shadcn/ui",
+        "React 18",
+        "Vite 5",
+        "Tailwind CSS",
+        "Convex (queries/mutations, storage)",
+        "React Router v6",
+        "@react-oauth/google",
+        "Facebook SDK",
+        "Radix UI primitives",
+        "Custom UI components",
         "React Hook Form",
-        "Zod Validation",
-        "Row Level Security",
-        "JWT Authentication",
-        "Real-time Subscriptions",
-        "File Upload System",
-        "Optimistic Updates",
-        "Local Storage Sync",
+        "Zod validation",
+        "Service Worker (prod-only)",
+        "Embla Carousel",
+        "Lucide Icons",
+        "Real-time data synchronization",
+        "Optimistic UI updates",
+        "Request caching/deduplication",
+        "Virtualized lists",
+        "Lazy/deferred routing",
+        "Local storage session handling",
+        "Protected routes and authentication guards"
       ],
       features: [
         "Advanced job search with multi-criteria filtering",
-        "Real-time application tracking with status updates",
+        "Real-time application tracking and notifications",
         "Role-based access control (candidates vs recruiters)",
-        "Secure file upload with validation (PDF, DOC, DOCX)",
-        "Company profile management with logo upload",
-        "Job posting system with rich text editor",
+        "Secure resume upload and handling via Convex storage",
+        "Job posting and candidate management",
         "Saved jobs and application history",
-        "Responsive design for all devices",
-        "Optimistic updates for immediate feedback",
-        "Local storage synchronization",
+        "Responsive, modern UI with lazy/deferred routing",
+        "Optimistic UI updates and request deduplication",
         "Protected routes and authentication guards",
-        "Advanced search algorithms with O(n) complexity",
-        "Data persistence across browser sessions",
-        "Enterprise-grade security implementation"
+        "Local storage session handling with Convex sync",
+        "Google/Facebook OAuth authentication",
+        "Email/password authentication",
+        "Virtualized lists for performance",
+        "Production-only service worker",
+        "Request caching and deduplication",
+        "Real-time data synchronization"
       ],
       challenges: [
+        "Google OAuth origin errors: Fixed by strict env usage and allowed origins; added dev SW disable to prevent stale bundles",
+        "Convex query writes: Removed invalid writes inside queries; merged fields in-memory for safe read operations",
+        "Data consistency and UX: Used optimistic updates, caching hooks, and virtualized lists to keep UI snappy with real-time data",
+        "Role-based navigation: Centralized auth state and guards to route users by role without flicker",
         "Implementing complex state management across multiple data layers",
         "Creating efficient search algorithms with real-time filtering",
         "Building secure file upload system with comprehensive validation",
         "Designing role-based access control for different user types",
         "Optimizing performance with code splitting and lazy loading",
-        "Implementing optimistic updates for better user experience",
         "Ensuring data consistency across real-time subscriptions",
         "Creating responsive design that works seamlessly on all devices"
       ],
@@ -292,7 +398,7 @@ const Projects = () => {
       teamSize: "Solo Developer",
       status: "Completed"
     },
-  ];
+  ], []); // Empty dependency array since projects data is static
 
   return (
     <section id="projects" className="py-16 sm:py-20 bg-theme-secondary dark:bg-gradient-to-br dark:from-dark-900 dark:to-dark-800">
@@ -322,24 +428,19 @@ const Projects = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  transition: { duration: 0.3 },
+                  y: -5, // Reduced movement
+                  scale: 1.01, // Reduced scale
+                  transition: { duration: 0.2 }, // Faster transition
                 }}
-                onClick={() => setSelectedProject(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setSelectedProject(index);
-                  }
-                }}
+                onClick={() => handleProjectClick(index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
                 tabIndex={0}
                 role="button"
                 aria-label={`View details for ${project.title} project`}
                 className="group bg-theme-primary dark:bg-dark-700 rounded-2xl overflow-hidden shadow-theme hover:shadow-theme-hover transition-all duration-300 border border-theme hover:border-theme-hover hover-lift cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <LazyImage
                     src={project.image}
                     alt={project.title}
                     className={`w-full h-32 sm:h-40 lg:h-48 object-cover transition-transform duration-500 group-hover:scale-110 ${
@@ -358,7 +459,7 @@ const Projects = () => {
                       backgroundColor: '#f3f4f6',
                       display: 'block',
                       transform: project.title === "CAREERFLOW" ? "rotate(0deg) scaleX(1)" : "none",
-                      imageRendering: project.title === "CAREERFLOW" ? "smooth" : "auto",
+                      imageRendering: (project.title === "CAREERFLOW" ? "smooth" : "auto") as React.CSSProperties['imageRendering'],
                       filter: project.title === "CAREERFLOW" ? "none" : "none"
                     }}
                   />
@@ -381,16 +482,11 @@ const Projects = () => {
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 lg:mb-6">
-                    {project.techStack.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-2 sm:px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-200 text-xs sm:text-sm rounded-full font-medium border border-blue-200 dark:border-blue-700/50 hover:scale-105 transition-transform"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <TechStackList 
+                    techStack={project.techStack} 
+                    className="mb-3 sm:mb-4 lg:mb-6"
+                    maxItems={8}
+                  />
 
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4">
                     <motion.a
@@ -404,16 +500,16 @@ const Projects = () => {
                       <span className="sm:hidden">GitHub</span>
                     </motion.a>
                     {project.demo && (
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.demo}
-                        className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all duration-300 font-medium text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-glow-purple touch-manipulation"
-                      >
-                        <ExternalLink size={14} className="sm:w-4 sm:h-4" />
-                        <span className="hidden sm:inline">Live Demo</span>
-                        <span className="sm:hidden">Live</span>
-                      </motion.a>
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={project.demo}
+                      className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all duration-300 font-medium text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-glow-purple touch-manipulation"
+                    >
+                      <ExternalLink size={14} className="sm:w-4 sm:h-4" />
+                      <span className="hidden sm:inline">Live Demo</span>
+                      <span className="sm:hidden">Live</span>
+                    </motion.a>
                     )}
                   </div>
                 </div>
@@ -445,7 +541,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={() => setSelectedProject(null)}
+            onClick={handleModalClose}
           >
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -462,10 +558,10 @@ const Projects = () => {
               >
               {/* Close Button */}
               <button
-                onClick={() => setSelectedProject(null)}
+                onClick={handleModalClose}
                 onKeyDown={(e) => {
                   if (e.key === 'Escape') {
-                    setSelectedProject(null);
+                    handleModalClose();
                   }
                 }}
                 aria-label="Close project details"
@@ -481,7 +577,7 @@ const Projects = () => {
                     <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                       {/* Project Image */}
                       <div className="lg:w-1/2">
-                        <img
+                        <LazyImage
                           src={projects[selectedProject].image}
                           alt={projects[selectedProject].title}
                           className="w-full h-64 sm:h-80 lg:h-96 object-contain rounded-2xl shadow-lg bg-theme-secondary dark:bg-dark-700"
@@ -599,16 +695,11 @@ const Projects = () => {
                       <Code className="w-8 h-8 text-green-500" />
                       Technologies Used
                     </h3>
-                    <div className="flex flex-wrap gap-3">
-                      {(projects[selectedProject].detailedTechStack || projects[selectedProject].techStack).map((tech, index) => (
-                        <span
-                          key={index}
-                          className="px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-200 rounded-full font-medium border border-blue-200 dark:border-blue-700/50 hover:scale-105 transition-transform"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    <TechStackList 
+                      techStack={projects[selectedProject].detailedTechStack || projects[selectedProject].techStack}
+                      className="gap-3"
+                      maxItems={20}
+                    />
                   </div>
                 </div>
               )}
@@ -620,4 +711,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default React.memo(Projects);
