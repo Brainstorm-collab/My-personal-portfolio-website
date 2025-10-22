@@ -111,21 +111,12 @@ const Projects = () => {
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
       
-      if (selectedProject !== null) {
-        document.addEventListener('keydown', handleEscape);
-        // Prevent body scroll when modal is open
-        document.body.style.overflow = 'hidden';
-        
-        // Focus management - focus the modal when it opens
-        requestAnimationFrame(() => {
-          const modal = document.querySelector('[role="dialog"]') as HTMLElement;
-          if (modal) {
-            modal.focus();
-          }
-        });
-      } else {
-        document.body.style.overflow = 'unset';
-      }        }
+      // Focus management - focus the modal when it opens
+      requestAnimationFrame(() => {
+        const modal = document.querySelector('[role="dialog"]') as HTMLElement;
+        if (modal) {
+          modal.focus();
+        }
       });
     } else {
       document.body.style.overflow = 'unset';
