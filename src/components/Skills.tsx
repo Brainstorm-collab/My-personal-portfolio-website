@@ -45,6 +45,7 @@ const Skills = () => {
       skills: [
         { name: "Python", experience: "Advanced", color: "bg-green-500", icon: "🐍" },
         { name: "Node.js", experience: "Advanced", color: "bg-green-600", icon: "🌲" },
+        { name: "Express.js", experience: "Beginner", color: "bg-gray-600", icon: "🚂" },
         { name: "Next.js", experience: "Intermediate", color: "bg-gray-700", icon: "▲" },
         { name: "PostgreSQL", experience: "Intermediate", color: "bg-blue-700", icon: "🐘" },
         // { name: "Supabase", experience: "Intermediate", color: "bg-green-700", icon: "🗄️" },
@@ -68,7 +69,6 @@ const Skills = () => {
         { name: "Git/GitHub", experience: "Advanced", color: "bg-gray-800", icon: "🔧" },
         { name: "Docker", experience: "Beginner", color: "bg-blue-500", icon: "🐳" },
         { name: "Figma", experience: "Beginner", color: "bg-purple-500", icon: "🎨" },
-        { name: "Postman", experience: "Beginner", color: "bg-orange-600", icon: "📮" },
         { name: "Redux Toolkit", experience: "Beginner", color: "bg-purple-600", icon: "📦" }
       ]
     }

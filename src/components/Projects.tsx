@@ -111,12 +111,21 @@ const Projects = () => {
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
       
-      // Focus management - focus the modal when it opens
-      requestAnimationFrame(() => {
-        const modal = document.querySelector('[role="dialog"]') as HTMLElement;
-        if (modal) {
-          modal.focus();
-        }
+      if (selectedProject !== null) {
+        document.addEventListener('keydown', handleEscape);
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management - focus the modal when it opens
+        requestAnimationFrame(() => {
+          const modal = document.querySelector('[role="dialog"]') as HTMLElement;
+          if (modal) {
+            modal.focus();
+          }
+        });
+      } else {
+        document.body.style.overflow = 'unset';
+      }        }
       });
     } else {
       document.body.style.overflow = 'unset';
@@ -322,6 +331,96 @@ const Projects = () => {
       duration: "1 month",
       teamSize: "Solo Developer",
       status: "Live & Production Ready"
+    },
+    {
+      title: "Cosyposy",
+      description:
+        "A comprehensive full-stack restaurant Point of Sale (POS) system that combines real-time data synchronization, role-based access control, and performance optimization. Features advanced order management with multi-status workflow, dynamic menu management, intelligent inventory tracking, and sophisticated staff attendance monitoring. Response times improved from 20-30 seconds to under 1 second.",
+      detailedDescription: "CosyPOS is a comprehensive full-stack restaurant Point of Sale (POS) system that combines real-time data synchronization, role-based access control, and enterprise-grade performance optimization to deliver a complete solution for restaurants, cafes, and food service businesses. The platform features advanced order management with multi-status workflow (Pending → In Progress → Served → Paid), dynamic menu management with category organization, intelligent inventory tracking with low-stock alerts, and sophisticated staff attendance monitoring. Built with React 19.1.1, Node.js 22.16.0, Express 5.1.0, and Prisma ORM 6.17.1 with PostgreSQL, it includes a comprehensive reservation system with table allocation, real-time dashboard analytics with Recharts visualization, and professional image management with Sharp optimization reducing payload by 70-90%. The platform offers enterprise-grade security with JWT authentication, three-tier role hierarchy (Admin/Staff/User), and granular permission controls. Professional architecture demonstrates 11 optimized database models with strategic indexing, ETag-based HTTP caching, request deduplication, image optimization middleware, and rate limiting, delivering response times under 1 second across 4,000+ lines of production code with 161+ optimized images.",
+      image: "/imgs/demo-cosypos.png",
+      techStack: [
+        "React 19",
+        "Node.js 22",
+        "Express 5",
+        "Prisma ORM 6",
+        "PostgreSQL",
+        "JWT",
+        "Sharp",
+        "Recharts",
+        "Multer",
+        "bcryptjs",
+        "Helmet",
+        "CORS",
+      ],
+      detailedTechStack: [
+        "React 19.1.1",
+        "Node.js 22.16.0",
+        "Express 5.1.0",
+        "Prisma ORM 6.17.1",
+        "PostgreSQL",
+        "JWT 9.0.2",
+        "bcryptjs 2.4.3",
+        "Sharp 0.34.4",
+        "Multer 1.4.5-lts.1",
+        "Recharts 3.3.0",
+        "React Icons 5.5.0",
+        "Lucide React 0.546.0",
+        "Helmet 8.0.0",
+        "Compression 1.7.4",
+        "CORS 2.8.5",
+        "Express Rate Limit 8.1.0",
+        "dotenv 17.2.3",
+        "Vite 7.1.7",
+        "React Router 7.9.4",
+        "ESLint 9.36.0",
+        "Context API",
+        "Custom CSS",
+        "Lazy Loading",
+        "Code Splitting",
+      ],
+      features: [
+        "Real-time dashboard with business metrics and KPIs",
+        "Advanced order management with 5-status workflow system",
+        "Dynamic menu management with category organization and image upload",
+        "Comprehensive reservation system with table and floor management",
+        "Staff management with attendance tracking and clock-in/out system",
+        "Intelligent inventory tracking with low-stock alerts and par levels",
+        "Reports & analytics with Recharts and Chart.js visualization",
+        "JWT authentication with three-tier role-based access control",
+        "Image optimization with Sharp (70-90% size reduction, 4 presets)",
+        "Real-time data synchronization with custom React hooks",
+        "ETag-based HTTP caching for sub-millisecond responses",
+        "Pagination support for large datasets (50-100 items per page)",
+        "Request deduplication preventing stampeding herd problem",
+        "Session management with auto-refresh and token expiration",
+        "Toast notifications for real-time user feedback",
+        "Mobile-responsive design optimized for all devices",
+        "Performance monitoring with comprehensive error handling",
+        "Rate limiting (100 req/min general, 10 req/15min auth)",
+        "Database connection pooling with graceful shutdown",
+        "Protected routes with role-based permission checking",
+        "Dark theme UI with modern animations",
+        "Prisma Studio integration for database management",
+        "Multi-size image presets (thumbnail/small/medium/large)",
+        "Comprehensive API with RESTful design patterns",
+      ],
+      challenges: [
+        "Reducing response times from 20-30 seconds to under 1 second - Implemented multi-layer caching with ETag support and in-memory cache, added request deduplication middleware to solve stampeding herd problem, optimized database queries with strategic field selection and indexing",
+        "Managing large image files (161+ images) efficiently - Integrated Sharp for automatic compression and resizing (4 size presets), implemented in-memory LRU cache for processed images, achieved 70-90% reduction in payload size",
+        "Building complex multi-status order workflow system - Designed state machine for order progression with audit trail, implemented real-time tracking with status notifications, created comprehensive order history and analytics",
+        "Implementing granular role-based access control - Developed three-tier hierarchy with custom permission JSON, created middleware for route and feature-level checking, built dynamic permission management system",
+        "Designing scalable database architecture - Created 11 optimized Prisma models with strategic relationships, implemented comprehensive indexing on frequently queried fields, configured connection pooling (10 connections, 20s timeout)",
+        "Handling concurrent requests and database connections - Implemented request deduplication with 30-second timeout, added graceful shutdown handling for database connections, configured Prisma client singleton pattern",
+        "Building real-time staff attendance tracking - Created clock-in/clock-out with break time tracking, implemented date-based queries with status management, designed attendance reports with performance analytics",
+        "Creating comprehensive reservation system - Built table allocation with floor management and capacity limits, implemented date/time validation and conflict prevention, created multi-status workflow with deposit tracking",
+        "Optimizing frontend performance with lazy loading - Implemented code splitting for all major routes, created custom lazy components with React Suspense, reduced initial bundle size and improved TTI",
+        "Implementing secure file upload system - Integrated Multer with file type validation and size limits, created separate directories for categories, menu, and profiles, added security checks and sanitization",
+      ],
+      github: "https://github.com/Brainstorm-collab/cosyposy-Org",
+      demo: "https://cosyposy.vercel.app/",
+      duration: "1 months",
+      teamSize: "solo developer",
+      status: "Live & Active"
     },
     {
       title: "FoodieHub",
