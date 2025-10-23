@@ -11,8 +11,12 @@ const PerformanceMonitor = () => {
     // Monitor page load time
     window.addEventListener('load', () => {
       const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-      const loadTime = navigation.loadEventEnd - navigation.loadEventStart;
-      console.log(`Page load time: ${loadTime}ms`);
+      if (navigation) {
+        const loadTime = navigation.loadEventEnd - navigation.fetchStart;
+        const domContentLoaded = navigation.domContentLoadedEventEnd - navigation.fetchStart;
+        console.log(`Page load time: ${loadTime.toFixed(2)}ms`);
+        console.log(`DOM Content Loaded: ${domContentLoaded.toFixed(2)}ms`);
+      }
     });
 
     // Monitor image load performance

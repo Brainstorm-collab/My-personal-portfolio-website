@@ -2,32 +2,8 @@ import { useEffect } from 'react';
 
 const ResourcePreloader = () => {
   useEffect(() => {
-    // Preload critical images
-    const criticalImages = [
-      '/imgs/Creatr.png',
-      '/imgs/CareerFlow.png',
-      '/imgs/FoodieHub.png',
-    ];
-
-    const preloadImage = (src: string) => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
-    };
-
-    // Preload critical images
-    criticalImages.forEach(preloadImage);
-
-    // Preload fonts
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'preload';
-    fontLink.as = 'font';
-    fontLink.type = 'font/woff2';
-    fontLink.crossOrigin = 'anonymous';
-    fontLink.href = '/fonts/inter-var.woff2';
-    document.head.appendChild(fontLink);
+    // Note: Image preloading is handled by lazy loading component
+    // Only preconnect to external domains for faster resource loading
 
     // Preconnect to external domains
     const preconnectDomains = [
