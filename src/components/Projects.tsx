@@ -324,6 +324,62 @@ const Projects = () => {
       status: "Live & Production Ready"
     },
     {
+      title: "SURYA CONNECT",
+      description:
+        "A full-stack hospital management platform for Surya Nursing Home that gives patients, doctors, and administrators a shared, real-time workspace for appointments, medical records, notifications, and personalized communications.",
+      detailedDescription:
+        "Surya Connect delivers a responsive healthcare portal that blends a consumer-grade booking journey with a professional doctor cockpit. Patients can discover specialists, filter by location and availability, and book or reschedule appointments while managing prescriptions and medical records. Doctors manage schedules, review consultation histories, toggle availability, and push prescriptions straight into each patient timeline. Convex powers live data sync, notifications, and secure role-based workflows so every dashboard stays ahead without page refreshes, while Tailwind and shadcn/ui keep the interface clean across mobile and desktop clinics.",
+      image: "/imgs/Hospital-Management.png",
+      techStack: [
+        "React 19",
+        "Vite 5",
+        "Tailwind CSS",
+        "Convex",
+        "React Router v6",
+        "Shadcn UI",
+        "Sonner",
+        "Lucide Icons"
+      ],
+      detailedTechStack: [
+        "React 19",
+        "Vite 5",
+        "TypeScript",
+        "Tailwind CSS",
+        "Shadcn UI & Radix primitives",
+        "React Router v6",
+        "Convex (functions, auth, storage)",
+        "Sonner toast system",
+        "@react-oauth/google",
+        "Lucide Icons",
+        "date-fns utilities",
+        "Optimistic UI patterns",
+        "Paginated Convex queries",
+        "Responsive design system"
+      ],
+      features: [
+        "Dual-role authentication with email/password and Google OAuth that routes users to patient or doctor dashboards instantly",
+        "Patient-first booking flow with debounced search, specialization filters, slot carousel, and protected booking mutations",
+        "Doctor console with availability toggles, at-a-glance metrics, today’s schedule, and quick actions for analytics and patient lists",
+        "Medical records vault linking appointments, diagnoses, prescriptions, and uploaded reports into a chronological timeline",
+        "Real-time notification center with unread counts, action links, and status-driven alerts for booking lifecycle events",
+        "Shoppable pharmacy and facility catalog backed by shared cart state, toast-driven UX, and inventory-aware call-to-actions",
+        "Fully responsive marketing site with hero search, specialization highlights, testimonials, FAQs, and app download CTAs",
+        "Optimistic UI updates and paginated Convex queries that keep dashboards snappy as data scales"
+      ],
+      challenges: [
+        "Modeling doctor and patient roles in Convex without data leakage by using dedicated indices, role guards, and sanitized projections",
+        "Delivering instant status updates through chained Convex mutations that emit notifications on every appointment state change",
+        "Keeping search and filtering responsive via debounced inputs, paginated queries, and client-side availability logic",
+        "Balancing UX for two personas with dedicated dashboard layouts, shared components, and role-aware navigation",
+        "Persisting secure access without flicker using context-based session hydration, protected routes, and inline login prompts"
+      ],
+      github: "https://github.com/Brainstorm-collab/healthcare-hospital",
+      demo: "https://healthcare-hospital-two.vercel.app/",
+      duration: "3 weeks (Nov 2025 launch)",
+      teamSize: "Solo Developer",
+      status: "MVP live with ongoing iterations"
+    },
+    {
       title: "Cosyposy",
       description:
         "A comprehensive full-stack restaurant Point of Sale (POS) system that combines real-time data synchronization, role-based access control, and performance optimization. Features advanced order management with multi-status workflow, dynamic menu management, intelligent inventory tracking, and sophisticated staff attendance monitoring. Response times improved from 20-30 seconds to under 1 second.",
@@ -432,7 +488,7 @@ const Projects = () => {
       teamSize: "Solo Developer",
       status: "Completed"
     },
-    {
+    /*{
       title: "Weather App",
       description:
         "A real-time weather application powered by the OpenWeather API. Offers dynamic city-based search, responsive UI, and live data display including temperature, humidity, and wind speed. Features dynamic backgrounds, color transitions, and cross-device optimization.",
@@ -450,8 +506,8 @@ const Projects = () => {
       duration: "1 week",
       teamSize: "Solo Developer",
       status: "Completed"
-    },
-    {
+    },*/
+    /*{
       title: "Snake Game",
       description:
         "An interactive retro Snake Game built using Python and Pygame. Implements real-time collision detection, responsive controls, scoring mechanism, and enhanced visual elements for smooth gameplay.",
@@ -468,8 +524,8 @@ const Projects = () => {
       duration: "2 weeks",
       teamSize: "Solo Developer",
       status: "Completed"
-    },
-    {
+    },*/
+    /*{
       title: "2048 React Game",
       description:
         "A fully responsive 2048 puzzle game built with React and Vite, featuring smooth iOS-style animations, score tracking via localStorage, undo functionality, dark mode, and swipe gesture support. Focuses on clean state management and modular component architecture.",
@@ -487,7 +543,7 @@ const Projects = () => {
       duration: "5 days",
       teamSize: "Solo Developer",
       status: "Completed"
-    },
+    },*/
   ], []); // Empty dependency array since projects data is static
 
   return (
