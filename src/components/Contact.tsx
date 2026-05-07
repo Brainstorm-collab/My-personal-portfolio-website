@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter, CheckCircle, Loader2 } from 'lucide-react';
+import { Send, Mail, MapPin, Phone, Github, Linkedin, CheckCircle, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -101,23 +101,23 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 bg-theme-secondary dark:bg-gradient-to-br dark:from-dark-800 dark:to-dark-700">
+    <section id="contact" className="py-20 sm:py-24 lg:py-32 bg-theme-primary dark:bg-gradient-to-br dark:from-dark-950 dark:to-dark-900 border-t border-gray-200 dark:border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="max-w-6xl mx-auto"
+          className="max-w-5xl mx-auto"
         >
-          <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-theme-primary mb-4 sm:mb-6">
-              Let's Work Together
+          <motion.div variants={itemVariants} className="mb-14 sm:mb-20">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-theme-primary mb-5 tracking-tight">
+              Get in touch
             </h2>
-            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 mx-auto mb-6 sm:mb-8 rounded-full shadow-glow"></div>
-            <p className="text-lg sm:text-xl text-theme-secondary max-w-3xl mx-auto px-4 leading-relaxed">
-              Have a project in mind or want to collaborate? I'd love to hear from you. 
-              Let's create something amazing together!
+            <div className="w-14 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-8" />
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
+              I'm looking for full-time roles after graduation. If you want to work together
+              or just have a question, send me a message.
             </p>
           </motion.div>
 
@@ -144,12 +144,14 @@ const Contact = () => {
                 </motion.div>
               )}
 
-              <div className="bg-theme-tertiary dark:bg-dark-700 rounded-2xl p-4 sm:p-6 lg:p-8 border border-theme hover:border-theme-hover transition-all duration-300">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-theme-primary mb-3 sm:mb-4 lg:mb-6">Send a Message</h3>
-                <form onSubmit={handleSubmit} ref={formRef} className="space-y-3 sm:space-y-4 lg:space-y-6">
+              <div className="bg-theme-primary dark:bg-dark-800 rounded-xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800">
+                <h3 className="text-xs font-bold tracking-[0.25em] uppercase text-gray-500 dark:text-gray-400 mb-6">
+                  Send a message
+                </h3>
+                <form onSubmit={handleSubmit} ref={formRef} className="space-y-5">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-theme-secondary mb-2">
-                      Your Name
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Name
                     </label>
                     <input
                       type="text"
@@ -158,14 +160,14 @@ const Contact = () => {
                       value={formData.user_name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-theme-primary dark:bg-dark-600 border border-theme rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-accent-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base text-theme-primary placeholder-gray-400 dark:placeholder-gray-500 touch-manipulation"
-                      placeholder="John Doe"
+                      className="w-full px-4 py-2.5 bg-theme-secondary dark:bg-dark-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors text-sm text-theme-primary placeholder-gray-400 dark:placeholder-gray-600"
+                      placeholder="Your name"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-theme-secondary mb-2">
-                      Email Address
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Email
                     </label>
                     <input
                       type="email"
@@ -174,14 +176,14 @@ const Contact = () => {
                       value={formData.user_email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-theme-primary dark:bg-dark-600 border border-theme rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-accent-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base text-theme-primary placeholder-gray-400 dark:placeholder-gray-500 touch-manipulation"
-                      placeholder="john@example.com"
+                      className="w-full px-4 py-2.5 bg-theme-secondary dark:bg-dark-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors text-sm text-theme-primary placeholder-gray-400 dark:placeholder-gray-600"
+                      placeholder="you@example.com"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-theme-secondary mb-2">
-                      Your Message
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Message
                     </label>
                     <textarea
                       id="message"
@@ -189,102 +191,102 @@ const Contact = () => {
                       value={formData.user_message}
                       onChange={handleInputChange}
                       required
-                      rows={4}
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-theme-primary dark:bg-dark-600 border border-theme rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-accent-400 focus:border-transparent transition-all duration-300 resize-none text-sm sm:text-base text-theme-primary placeholder-gray-400 dark:placeholder-gray-500 touch-manipulation"
-                      placeholder="Tell me about your project or just say hello!"
+                      rows={5}
+                      className="w-full px-4 py-2.5 bg-theme-secondary dark:bg-dark-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors resize-none text-sm text-theme-primary placeholder-gray-400 dark:placeholder-gray-600"
+                      placeholder="What are you working on?"
                     />
                   </div>
 
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ y: -2 }}
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all shadow-lg hover:shadow-glow-purple text-sm sm:text-base touch-manipulation"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-white bg-gray-900 dark:bg-blue-600 rounded-lg hover:bg-gray-700 dark:hover:bg-blue-500 transition-colors disabled:opacity-60"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        Sending
+                      </>
                     ) : (
                       <>
-                        <Send size={16} className="sm:w-5 sm:h-5" />
-                        Send Message
+                        <Send size={16} />
+                        Send message
                       </>
                     )}
                   </motion.button>
                   {error && (
-                    <p className="text-red-500 text-sm text-center mt-2">{error}</p>
+                    <p className="text-red-500 text-sm">{error}</p>
                   )}
                 </form>
               </div>
             </motion.div>
 
             {/* Contact Info */}
-            <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6 lg:space-y-8">
+            <motion.div variants={itemVariants} className="space-y-8">
               <div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-theme-primary mb-3 sm:mb-4 lg:mb-6">Get in Touch</h3>
-                <p className="text-sm sm:text-base text-theme-secondary leading-relaxed mb-4 sm:mb-6 lg:mb-8">
-                  I'm always open to discussing new opportunities, creative projects, or potential 
-                  collaborations. Whether you have a specific project in mind or just want to connect, 
-                  feel free to reach out!
-                </p>
-              </div>
-
-              <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.a
-                    key={index}
-                    href={info.href}
-                    whileHover={{ scale: 1.02, x: 10 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-theme-tertiary dark:bg-dark-700 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-600 transition-all duration-300 border border-theme hover:border-theme-hover touch-manipulation"
-                  >
-                    <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 rounded-lg shadow-lg group-hover:shadow-glow transition-all duration-300">
-                      <info.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-theme-primary text-sm sm:text-base">{info.title}</h4>
-                      <p className="text-theme-secondary text-xs sm:text-sm">{info.value}</p>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-
-              <div className="pt-4 sm:pt-6 lg:pt-8 border-t border-theme">
-                <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-theme-primary mb-3 sm:mb-4">Follow Me</h4>
-                <div className="flex gap-3 sm:gap-4">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
+                <h3 className="text-xs font-bold tracking-[0.25em] uppercase text-gray-500 dark:text-gray-400 mb-6">
+                  Direct
+                </h3>
+                <div className="space-y-1">
+                  {contactInfo.map((info, index) => (
+                    <a
                       key={index}
-                      href={social.href}
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 rounded-lg text-white hover:from-blue-600 hover:via-purple-600 hover:to-accent-600 transition-all shadow-lg hover:shadow-glow-purple touch-manipulation"
-                      aria-label={social.label}
+                      href={info.href}
+                      target={info.title === 'Location' ? '_blank' : undefined}
+                      rel={info.title === 'Location' ? 'noopener noreferrer' : undefined}
+                      className="group flex items-baseline gap-3 py-3 border-b border-gray-200 dark:border-gray-800 last:border-b-0 transition-colors"
                     >
-                      <social.icon size={16} className="sm:w-5 sm:h-5" />
-                    </motion.a>
+                      <info.icon className="w-4 h-4 text-gray-500 dark:text-gray-400 self-center flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400">
+                          {info.title}
+                        </p>
+                        <p className="text-sm sm:text-base text-theme-primary group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mt-0.5 break-all">
+                          {info.value}
+                        </p>
+                      </div>
+                    </a>
                   ))}
                 </div>
               </div>
 
-              {/* Resume Download Section */}
-              <div className="pt-4 sm:pt-6 lg:pt-8 border-t border-theme">
-                <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-theme-primary mb-3 sm:mb-4">Download Resume</h4>
-                <motion.a
+              <div>
+                <h3 className="text-xs font-bold tracking-[0.25em] uppercase text-gray-500 dark:text-gray-400 mb-6">
+                  Elsewhere
+                </h3>
+                <div className="flex gap-2">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="inline-flex items-center justify-center w-10 h-10 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:border-gray-500 dark:hover:border-gray-500 hover:text-theme-primary transition-colors"
+                    >
+                      <social.icon size={16} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-bold tracking-[0.25em] uppercase text-gray-500 dark:text-gray-400 mb-6">
+                  Resume
+                </h3>
+                <a
                   href="/imgs/Eesaan_Resume.pdf"
                   download="Eesaan_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-glow-purple touch-manipulation"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-700 rounded-lg hover:border-gray-500 dark:hover:border-gray-500 transition-colors"
                 >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  Download Resume (PDF)
-                </motion.a>
+                  Download PDF
+                </a>
               </div>
             </motion.div>
           </div>

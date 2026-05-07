@@ -1,16 +1,12 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Heart } from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const About = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        delayChildren: 0.1,
-        staggerChildren: 0.1,
-      },
+      transition: { delayChildren: 0.05, staggerChildren: 0.08 },
     },
   };
 
@@ -19,106 +15,149 @@ const About = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut" as const
-      }
+      transition: { duration: 0.45, ease: 'easeOut' as const },
     },
   };
 
-  const cardVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut" as const
-      },
-    },
-  };
-
-  const cards = [
+  const experience = [
     {
-      icon: GraduationCap,
-      title: "Education",
-      content:
-        "Currently pursuing my degree at Bharat University, focusing on Computer Science and Software Engineering. Always learning new technologies and staying updated with industry trends.",
+      role: 'Trainee Software Engineer',
+      company: 'Five Data Products and Solutions Pvt. Ltd.',
+      location: 'Hyderabad, India',
+      period: 'Feb 2026 — Present',
+      points: [
+        'Working on the NestJS backend that powers our SaaS platform. It has 25+ feature modules for things like RBAC, tenants, automation, calendar, notifications, and dashboards. The data layer uses Drizzle ORM on Postgres.',
+        'Building and maintaining the Module Federation setup. Our main app loads a separate dashboard app at runtime, and I work on both sides.',
+        'Adding Keycloak SSO across the apps. On the Next.js side I use oidc-client with PKCE. On the NestJS side I handle JWT verification.',
+        'Setting up background jobs with BullMQ and Redis, and file uploads to S3 using presigned URLs.',
+      ],
     },
     {
-      icon: Briefcase,
-      title: "Experience",
-      content:
-        "Passionate about full-stack development with hands-on experience in React, Python, and AI technologies. Building projects that solve real-world problems and enhance user experiences.",
-    },
-    {
-      icon: Heart,
-      title: "Interests",
-      content:
-        "Passionate about clean code architecture, modern UI/UX design, and open-source contribution. I actively explore new frameworks, AI-assisted workflows, and solve algorithmic challenges on platforms like CodeChef — all fueling my drive to build efficient and impactful digital solutions.",
+      role: 'Full Stack Web Developer Intern',
+      company: 'Solar Secure Solutions (MSME, Govt. of India)',
+      location: 'Remote',
+      period: 'Feb 2025 — Mar 2025',
+      points: [
+        'Built features for the company web app across the frontend and backend.',
+        'Got an "Excellent" rating from the engineering lead at the end of the internship.',
+      ],
     },
   ];
 
+  const education = {
+    degree: 'B.Tech, Computer Science and Engineering',
+    school: 'Bharath Institute of Higher Education and Research',
+    location: 'Chennai, India',
+    period: '2022 — 2026',
+    detail: 'CGPA: 8.1 / 10',
+  };
+
   return (
-    <section id="about" className="py-16 sm:py-20 bg-theme-secondary dark:bg-gradient-to-br dark:from-dark-800 dark:to-dark-700">
+    <section
+      id="about"
+      className="py-20 sm:py-24 bg-theme-secondary dark:bg-gradient-to-br dark:from-dark-900 dark:to-dark-800 border-t border-gray-200 dark:border-gray-800"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-6xl mx-auto"
+          viewport={{ once: true, margin: '-80px' }}
+          className="max-w-4xl mx-auto"
         >
-          <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-theme-primary mb-4 sm:mb-6">
-              About Me
+          {/* Section heading */}
+          <motion.div variants={itemVariants} className="mb-12">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-theme-primary mb-4 tracking-tight">
+              About
             </h2>
-            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 mx-auto mb-6 sm:mb-8 rounded-full shadow-glow"></div>
-            <p className="text-lg sm:text-xl text-theme-secondary max-w-3xl mx-auto leading-relaxed px-4">
-              I'm a passionate full-stack developer with a strong foundation in
-              modern web technologies. My journey in software development is
-              driven by curiosity, creativity, and a commitment to building
-              solutions that make a positive impact.
+            <div className="w-14 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+          </motion.div>
+
+          {/* Intro */}
+          <motion.div variants={itemVariants} className="mb-14 space-y-5">
+            <p className="text-xl sm:text-2xl text-gray-800 dark:text-gray-100 leading-relaxed font-medium">
+              I'm Gali Eesaan, a final-year Computer Science student in Chennai. I build full-stack
+              web apps for a living.
+            </p>
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+              Right now I work at{' '}
+              <span className="text-blue-600 dark:text-blue-400 font-semibold">Five Data Products</span>{' '}
+              in Hyderabad on a multi-tenant SaaS platform. My day-to-day is mostly{' '}
+              <span className="text-theme-primary font-semibold">NestJS</span> on the backend,{' '}
+              <span className="text-theme-primary font-semibold">Next.js</span> on the frontend, and{' '}
+              <span className="text-theme-primary font-semibold">Postgres</span> in between. The
+              codebase uses Module Federation, so I also work on how the apps load each other at
+              runtime.
+            </p>
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+              When I'm not at work, I solve problems on CodeChef (3-star,{' '}
+              <span className="font-semibold text-theme-primary">1600+ problems solved</span>, 400+
+              day streak as brainstorm_69) and build side projects to try out new tech.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {cards.map((card, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  transition: { duration: 0.3 },
-                }}
-                className="group bg-theme-primary dark:bg-dark-700 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-theme hover:shadow-theme-hover transition-all duration-300 border border-theme hover:border-theme-hover hover-lift"
-              >
-                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-blue-500 via-purple-500 to-accent-500 rounded-2xl mb-3 sm:mb-4 lg:mb-6 mx-auto shadow-lg group-hover:shadow-glow transition-all duration-300">
-                  <card.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
+          {/* Experience */}
+          <motion.div variants={itemVariants} className="mb-14">
+            <h3 className="text-sm font-bold tracking-[0.25em] uppercase text-blue-600 dark:text-blue-400 mb-8">
+              Experience
+            </h3>
+            <div className="space-y-10">
+              {experience.map((job, idx) => (
+                <div
+                  key={idx}
+                  className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-3 md:gap-10 border-b border-gray-200 dark:border-gray-800 pb-10 last:border-b-0 last:pb-0"
+                >
+                  <div className="text-sm sm:text-base text-gray-500 dark:text-gray-400 font-medium pt-1">
+                    {job.period}
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-2xl sm:text-3xl font-semibold text-theme-primary tracking-tight">
+                        {job.role}
+                      </h4>
+                      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-1">
+                        {job.company} · {job.location}
+                      </p>
+                    </div>
+                    <ul className="space-y-2.5 pt-2">
+                      {job.points.map((point, i) => (
+                        <li
+                          key={i}
+                          className="flex gap-3 text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                        >
+                          <span className="text-blue-500 dark:text-blue-400 mt-2 flex-shrink-0">
+                            ▸
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-theme-primary mb-2 sm:mb-3 lg:mb-4 text-center group-hover:text-blue-600 dark:group-hover:text-accent-400 transition-colors">
-                  {card.title}
-                </h3>
-                <p className="text-xs sm:text-sm lg:text-base text-theme-secondary leading-relaxed text-center">
-                  {card.content}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </motion.div>
 
-          <motion.div variants={itemVariants} className="mt-8 sm:mt-12 lg:mt-16 text-center">
-            <div className="bg-theme-primary dark:bg-dark-700 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-theme hover:shadow-theme-hover transition-all duration-300 border border-theme hover:border-theme-hover max-w-4xl mx-auto hover-lift">
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-theme-primary mb-3 sm:mb-4 lg:mb-6">
-                My Mission
-              </h3>
-              <p className="text-sm sm:text-base lg:text-lg text-theme-secondary leading-relaxed">
-                To leverage technology as a force for positive change, creating
-                innovative solutions that bridge the gap between complex
-                problems and elegant, user-friendly applications. I believe in
-                writing clean, maintainable code and collaborating with teams to
-                build products that truly matter.
-              </p>
+          {/* Education */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-sm font-bold tracking-[0.25em] uppercase text-blue-600 dark:text-blue-400 mb-8">
+              Education
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-3 md:gap-10">
+              <div className="text-sm sm:text-base text-gray-500 dark:text-gray-400 font-medium pt-1">
+                {education.period}
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-2xl sm:text-3xl font-semibold text-theme-primary tracking-tight">
+                  {education.degree}
+                </h4>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
+                  {education.school} · {education.location}
+                </p>
+                <p className="text-base text-gray-700 dark:text-gray-300 pt-1 font-medium">
+                  {education.detail}
+                </p>
+              </div>
             </div>
           </motion.div>
         </motion.div>

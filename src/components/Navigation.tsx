@@ -54,18 +54,19 @@ const Navigation = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 dark:bg-dark-800/90 backdrop-blur-md shadow-theme'
+          ? 'bg-white/85 dark:bg-dark-900/85 backdrop-blur-md border-b border-gray-200 dark:border-gray-800'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="font-bold text-2xl gradient-text-primary"
+          <motion.a
+            href="#home"
+            whileHover={{ scale: 1.03 }}
+            className="font-bold text-xl tracking-tight text-theme-primary transition-colors"
           >
-            G.Eesaan 
-          </motion.div>
+            Gali Eesaan
+          </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
@@ -80,19 +81,15 @@ const Navigation = () => {
                     whileTap={{ scale: 0.95 }}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors relative ${
                       isActive
-                        ? scrolled
-                          ? 'text-blue-600 dark:text-accent-400'
-                          : 'text-blue-200'
-                        : scrolled
-                        ? 'text-theme-primary hover:text-blue-500 dark:hover:text-accent-400'
-                        : 'text-white hover:text-blue-200'
+                        ? 'text-blue-600 dark:text-blue-400'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-theme-primary'
                     }`}
                   >
                     {item.name}
                     {isActive && (
                       <motion.div
                         layoutId="activeSection"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400 rounded-full"
                         initial={false}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -101,61 +98,41 @@ const Navigation = () => {
                 );
               })}
             </div>
-            
+
             {/* Theme Toggle Button */}
             <motion.button
               onClick={toggleTheme}
-              whileHover={{ scale: 1.05, rotate: 15 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`p-2 rounded-full transition-all duration-300 ${
-                scrolled
-                  ? 'bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-600'
-                  : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30'
-              }`}
+              className="p-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-gray-500 dark:hover:border-gray-500 transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === 'light' ? (
-                <Moon size={20} className="text-purple-600" />
-              ) : (
-                <Sun size={20} className="text-yellow-400" />
-              )}
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
             </motion.button>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* Theme Toggle for Mobile */}
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`p-2.5 rounded-full transition-all duration-300 ${
-                scrolled
-                  ? 'bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300'
-                  : 'bg-white/20 backdrop-blur-sm text-white'
-              }`}
+              className="p-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
               aria-label="Toggle theme"
             >
-              {theme === 'light' ? (
-                <Moon size={18} className="purple-600" />
-              ) : (
-                <Sun size={18} className="text-yellow-400" />
-              )}
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
             </motion.button>
-            
+
             <button
               onClick={() => {
                 setIsOpen(!isOpen);
-                // Toggle body scroll lock
                 if (!isOpen) {
                   document.body.classList.add('mobile-nav-open');
                 } else {
                   document.body.classList.remove('mobile-nav-open');
                 }
               }}
-              className={`p-2.5 rounded-md transition-all duration-200 touch-manipulation ${
-                scrolled ? 'text-theme-primary' : 'text-white'
-              }`}
+              className="p-2 rounded-md text-theme-primary transition-colors"
               aria-label="Toggle mobile menu"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
