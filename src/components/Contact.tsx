@@ -58,8 +58,7 @@ const Contact = () => {
           setShowSuccess(false);
         }, 5000);
       }
-    } catch (error) {
-      console.error('Email send failed:', error);
+    } catch {
       setError('Failed to send message. Please try again or contact me directly via email.');
     } finally {
       setIsSubmitting(false);
@@ -116,8 +115,8 @@ const Contact = () => {
             </h2>
             <div className="w-14 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-8" />
             <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
-              I'm looking for full-time roles after graduation. If you want to work together
-              or just have a question, send me a message.
+              Got a project in mind, a job to talk about, or just a question? Drop me a message
+              and I'll get back to you.
             </p>
           </motion.div>
 

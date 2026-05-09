@@ -2,9 +2,7 @@ import React, { Suspense, lazy, useEffect } from "react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
-import PerformanceMonitor from "./components/PerformanceMonitor";
 import ResourcePreloader from "./components/ResourcePreloader";
-import PerformanceSummary from "./components/PerformanceSummary";
 
 // Lazy load components for better performance
 const About = lazy(() => import("./components/About"));
@@ -24,21 +22,13 @@ function App() {
   // Register service worker for caching
   useEffect(() => {
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
-        });
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
     }
   }, []);
 
   return (
     <ThemeProvider>
-      <PerformanceMonitor />
       <ResourcePreloader />
-      <PerformanceSummary />
       <div className="font-sans bg-theme-primary text-theme-primary transition-colors duration-300">
         <Navigation />
         <Hero />

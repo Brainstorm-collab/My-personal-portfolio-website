@@ -58,8 +58,6 @@ export const useActiveSection = () => {
 
         if (newActiveSection !== activeSection) {
           setActiveSection(newActiveSection);
-          // Debug: Log active section changes (remove in production if needed)
-          console.log(`📍 Active Section: ${newActiveSection}`);
         }
         
         isScrolling = false;

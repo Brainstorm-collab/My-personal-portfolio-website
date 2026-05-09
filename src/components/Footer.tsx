@@ -23,9 +23,6 @@ const Footer = () => {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Full-Stack Engineer
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-500">
-                Hyderabad, India
-              </p>
             </div>
 
             {/* Nav */}

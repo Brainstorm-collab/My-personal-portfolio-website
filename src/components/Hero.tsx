@@ -59,12 +59,12 @@ const Hero = () => {
             variants={itemVariants}
             className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mb-10"
           >
-            Final-year Computer Science student in Chennai. Right now I work at{' '}
-            <span className="text-theme-primary font-semibold">Five Data Products</span> in
-            Hyderabad on a multi-tenant SaaS platform. Most of my code is{' '}
+            I work on web apps with{' '}
             <span className="text-theme-primary font-semibold">NestJS</span>,{' '}
             <span className="text-theme-primary font-semibold">Next.js</span>, and{' '}
-            <span className="text-theme-primary font-semibold">Postgres</span>.
+            <span className="text-theme-primary font-semibold">Postgres</span>. The parts I care
+            about most are the ones that don't usually get the spotlight: API design, database
+            schemas, auth, and performance.
           </motion.p>
 
           <motion.div
@@ -91,13 +91,6 @@ const Hero = () => {
             </motion.a>
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            className="mt-14 flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400"
-          >
-            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-            Looking for full-time roles after graduation
-          </motion.div>
         </motion.div>
       </div>
     </section>

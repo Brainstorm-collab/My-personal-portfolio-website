@@ -76,23 +76,18 @@ const About = () => {
           {/* Intro */}
           <motion.div variants={itemVariants} className="mb-14 space-y-5">
             <p className="text-xl sm:text-2xl text-gray-800 dark:text-gray-100 leading-relaxed font-medium">
-              I'm Gali Eesaan, a final-year Computer Science student in Chennai. I build full-stack
-              web apps for a living.
+              I'm Gali Eesaan, a full-stack engineer. I build web apps and I'm comfortable working
+              on any layer of the stack, backend, frontend, or database.
             </p>
             <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-              Right now I work at{' '}
-              <span className="text-blue-600 dark:text-blue-400 font-semibold">Five Data Products</span>{' '}
-              in Hyderabad on a multi-tenant SaaS platform. My day-to-day is mostly{' '}
-              <span className="text-theme-primary font-semibold">NestJS</span> on the backend,{' '}
-              <span className="text-theme-primary font-semibold">Next.js</span> on the frontend, and{' '}
-              <span className="text-theme-primary font-semibold">Postgres</span> in between. The
-              codebase uses Module Federation, so I also work on how the apps load each other at
-              runtime.
+              The work I'm most interested in is the backend side and performance. I like designing
+              APIs and database schemas, getting authentication right, and making slow apps faster.
+              On past projects I've cut load times from 15+ seconds down to under 6 by fixing slow
+              queries, adding caching, and batching requests.
             </p>
             <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-              When I'm not at work, I solve problems on CodeChef (3-star,{' '}
-              <span className="font-semibold text-theme-primary">1600+ problems solved</span>, 400+
-              day streak as brainstorm_69) and build side projects to try out new tech.
+              Outside of work I solve problems on CodeChef (3-star as brainstorm_69) and build side
+              projects to try out tools I don't get to use day-to-day.
             </p>
           </motion.div>
 

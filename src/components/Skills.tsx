@@ -107,8 +107,7 @@ const Skills = () => {
             variants={itemVariants}
             className="text-base sm:text-lg text-gray-600 dark:text-gray-400 italic mb-14 sm:mb-16 max-w-3xl leading-relaxed"
           >
-            Day-to-day I work mostly in Next.js, NestJS, and Postgres, with TypeScript
-            on top and Module Federation tying the apps together.
+            My core stack is Next.js, NestJS, and Postgres with TypeScript.
           </motion.p>
 
           {/* Categorized list */}
