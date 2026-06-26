@@ -38,7 +38,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-blue-600 dark:text-blue-400 mb-6"
           >
-            Full-Stack Engineer
+            AI & Full-Stack Engineer
           </motion.p>
 
           <motion.h1
@@ -52,19 +52,19 @@ const Hero = () => {
             variants={itemVariants}
             className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-500 dark:text-gray-400 tracking-tight leading-[1.1] mb-8"
           >
-            I build full-stack web apps.
+            I build AI-powered web apps.
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
             className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mb-10"
           >
-            I work on web apps with{' '}
-            <span className="text-theme-primary font-semibold">NestJS</span>,{' '}
-            <span className="text-theme-primary font-semibold">Next.js</span>, and{' '}
-            <span className="text-theme-primary font-semibold">Postgres</span>. The parts I care
-            about most are the ones that don't usually get the spotlight: API design, database
-            schemas, auth, and performance.
+            I build AI-powered, multi-tenant systems with{' '}
+            <span className="text-theme-primary font-semibold">RAG pipelines</span>,{' '}
+            <span className="text-theme-primary font-semibold">agentic workflows</span>, and{' '}
+            <span className="text-theme-primary font-semibold">LangChain</span>, then build the full
+            stack around them with NestJS, Next.js, and Postgres. The parts I care about most are API
+            design, orchestration, auth, and performance.
           </motion.p>
 
           <motion.div

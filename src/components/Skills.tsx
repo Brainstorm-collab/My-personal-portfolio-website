@@ -27,57 +27,42 @@ const Skills = () => {
 
   const skillGroups = [
     {
+      title: 'AI / LLM',
+      skills: [
+        'RAG pipelines',
+        'Tool/function calling',
+        'Agentic workflows',
+        'Prompt engineering',
+        'Text-to-SQL agents',
+        'LangChain',
+        'OpenAI',
+        'Anthropic',
+        'Gemini',
+      ],
+    },
+    {
       title: 'Languages',
       skills: ['TypeScript', 'JavaScript', 'Python', 'SQL'],
     },
     {
       title: 'Frontend',
-      skills: [
-        'Next.js',
-        'React',
-        'Module Federation',
-        'Tailwind CSS',
-        'shadcn/ui',
-        'Framer Motion',
-        'Zustand',
-        'React Hook Form + Zod',
-      ],
+      skills: ['React', 'Next.js', 'Module Federation', 'Tailwind CSS'],
     },
     {
       title: 'Backend',
-      skills: [
-        'NestJS',
-        'Node.js',
-        'Express.js',
-        'BullMQ',
-        'REST APIs',
-        'Drizzle',
-        'Prisma',
-      ],
+      skills: ['NestJS', 'Node.js', 'Express.js', 'REST APIs', 'Prisma', 'Drizzle'],
     },
     {
-      title: 'Databases & Auth',
-      skills: [
-        'PostgreSQL',
-        'Convex',
-        'Keycloak',
-        'JWT',
-        'OAuth 2.0',
-        'Clerk',
-        'Supabase',
-      ],
+      title: 'Databases',
+      skills: ['PostgreSQL', 'MySQL'],
     },
     {
-      title: 'Infrastructure',
-      skills: [
-        'Docker',
-        'AWS S3',
-        'Webpack',
-        'Activepieces',
-        'Flyway',
-        'Git',
-        'Vercel',
-      ],
+      title: 'Authentication',
+      skills: ['Clerk (OAuth 2.0 / OIDC)', 'JWT', 'Keycloak'],
+    },
+    {
+      title: 'Tools',
+      skills: ['Git', 'GitHub', 'Webpack'],
     },
   ];
 
@@ -107,7 +92,7 @@ const Skills = () => {
             variants={itemVariants}
             className="text-base sm:text-lg text-gray-600 dark:text-gray-400 italic mb-14 sm:mb-16 max-w-3xl leading-relaxed"
           >
-            My core stack is Next.js, NestJS, and Postgres with TypeScript.
+            My core stack is Next.js, NestJS, and Postgres with TypeScript, plus an AI layer built on LangChain, RAG, and agentic workflows.
           </motion.p>
 
           {/* Categorized list */}

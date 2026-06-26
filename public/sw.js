@@ -1,4 +1,4 @@
-const CACHE_NAME = 'portfolio-v1';
+const CACHE_NAME = 'portfolio-v2';
 const STATIC_CACHE_URLS = [
   '/',
   '/index.html',
@@ -7,10 +7,7 @@ const STATIC_CACHE_URLS = [
   '/src/index.css',
   '/imgs/Creatr.png',
   '/imgs/CareerFlow.png',
-  '/imgs/FoodieHub.png',
-  '/imgs/weather.png',
-  '/imgs/snake.png',
-  '/imgs/2048.png',
+  '/imgs/demo-cosypos.png',
   '/imgs/Eesaan_Resume.pdf',
 ];
 

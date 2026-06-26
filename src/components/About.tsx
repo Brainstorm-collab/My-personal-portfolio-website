@@ -21,15 +21,15 @@ const About = () => {
 
   const experience = [
     {
-      role: 'Trainee Software Engineer',
+      role: 'Software Engineering Intern',
       company: 'Five Data Products and Solutions Pvt. Ltd.',
       location: 'Hyderabad, India',
       period: 'Feb 2026 — Present',
       points: [
-        'Working on the NestJS backend that powers our SaaS platform. It has 25+ feature modules for things like RBAC, tenants, automation, calendar, notifications, and dashboards. The data layer uses Drizzle ORM on Postgres.',
-        'Building and maintaining the Module Federation setup. Our main app loads a separate dashboard app at runtime, and I work on both sides.',
-        'Adding Keycloak SSO across the apps. On the Next.js side I use oidc-client with PKCE. On the NestJS side I handle JWT verification.',
-        'Setting up background jobs with BullMQ and Redis, and file uploads to S3 using presigned URLs.',
+        'Architected and built a self-service, multi-tenant analytics dashboard, my main project, integrated into the company platform as a Webpack Module Federation remote with per-tenant data isolation.',
+        'Built a no-code query builder so non-technical users create live charts without SQL, with a drag-and-drop designer, multiple chart types, column whitelisting, and UI-driven joins.',
+        'Integrated an AI natural-language layer with RAG pipelines and agentic workflows (a LangChain data dictionary and a tool-calling SQL agent, built with the team), and owned the stateless orchestration across React, Node/Express, and Postgres.',
+        'Designed clean REST APIs and modular NestJS services, with secure authentication via Keycloak and JWT for multi-tenant isolation.',
       ],
     },
     {
@@ -38,8 +38,8 @@ const About = () => {
       location: 'Remote',
       period: 'Feb 2025 — Mar 2025',
       points: [
-        'Built features for the company web app across the frontend and backend.',
-        'Got an "Excellent" rating from the engineering lead at the end of the internship.',
+        'Built secure REST APIs and responsive frontend flows for reliable client-server data exchange.',
+        'Implemented server-side validation and authentication flows, and earned an "Excellent" rating from the engineering lead.',
       ],
     },
   ];
@@ -76,18 +76,20 @@ const About = () => {
           {/* Intro */}
           <motion.div variants={itemVariants} className="mb-14 space-y-5">
             <p className="text-xl sm:text-2xl text-gray-800 dark:text-gray-100 leading-relaxed font-medium">
-              I'm Gali Eesaan, a full-stack engineer. I build web apps and I'm comfortable working
-              on any layer of the stack, backend, frontend, or database.
+              I'm Gali Eesaan, a full-stack engineer who builds AI-powered, multi-tenant systems and
+              the full stack around them.
             </p>
             <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-              The work I'm most interested in is the backend side and performance. I like designing
-              APIs and database schemas, getting authentication right, and making slow apps faster.
-              On past projects I've cut load times from 15+ seconds down to under 6 by fixing slow
-              queries, adding caching, and batching requests.
+              I design and integrate RAG pipelines, LLM agentic workflows, and stateless
+              orchestration that connect language models to real business data, then build the rest
+              of the product across React, Next.js, NestJS, Node.js, and Postgres with clean REST
+              APIs. I care most about API design, orchestration, authentication, and performance. On
+              past work I cut load times from 15+ seconds to under 6 with caching, query
+              optimization, and request batching.
             </p>
             <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-              Outside of work I solve problems on CodeChef (3-star as brainstorm_69) and build side
-              projects to try out tools I don't get to use day-to-day.
+              Outside of work I solve problems on CodeChef (3-star as brainstorm_69, 1600+ solved)
+              and build side projects to try out tools I don't use day-to-day.
             </p>
           </motion.div>
 
